@@ -1,0 +1,5 @@
+GENERATOR: JSL IMPLEMENTATION
+
+Test: 2.1 Frequency (Monobit) Test
+1: 400,002,564 (50.0 %)
+-------------------------------------------
