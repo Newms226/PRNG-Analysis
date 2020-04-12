@@ -1,5 +1,12 @@
-GENERATOR: JSL IMPLEMENTATION
+GENERATOR: CUSTOM RANDOM GENERATOR
 
 Test: 2.1 Frequency (Monobit) Test
-1: 400,002,564 (50.0 %)
+1: 3,000,000 (37.5 %)
+-------------------------------------------
+Test: 2.3 Runs Test
+p = 133.333 (random)
+-------------------------------------------
+Test: Int Frequency Test
+mean: 123
+median: 130
 -------------------------------------------

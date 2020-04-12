@@ -1,8 +1,8 @@
-package edu.msudenver.mnewma12.algs.random.analyze;
+package edu.msudenver.mnewma12.algs.random.analyze.implementations;
 
 import edu.msudenver.mnewma12.algs.cli.CLI;
+import edu.msudenver.mnewma12.algs.random.analyze.StatReport;
 
-import java.text.NumberFormat;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,17 +10,17 @@ import java.util.Map;
 /**
  * See NIST 2.1
  */
-public class MonobitFreqTest implements ByteAnalyzer {
+public class MonobitFreqTest extends AbstractTest {
 
     static String name = "2.1 Frequency (Monobit) Test";
 
-    static String description = "Counts the proportions of set bits (1's)";
+    static String description = "Counts the proportions of set bits (1's) across" +
+            " the entire array.";
 
-    String report = "ANALYZE NOT CALLED";
+    public MonobitFreqTest() {
+        super(name, description);
+    }
 
-    NumberFormat formatter = NumberFormat.getNumberInstance();
-
-    @Override
     public StatReport analyze(byte[] bytes) {
 //        CLI.echoLn("2.1 Test running");
 
@@ -33,6 +33,7 @@ public class MonobitFreqTest implements ByteAnalyzer {
            put("set", "" + setCount);
            put("unset", "" + unsetCount);
            put("percentSet", "" + percentSet);
+           put("n", "" + bits.length());
         }};
 
         report = "1: " + formatter.format(setCount)

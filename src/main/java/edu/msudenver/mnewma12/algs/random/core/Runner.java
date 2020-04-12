@@ -2,10 +2,13 @@ package edu.msudenver.mnewma12.algs.random.core;
 
 
 import edu.msudenver.mnewma12.algs.cli.CLI;
-import edu.msudenver.mnewma12.algs.random.analyze.ByteAnalyzer;
-import edu.msudenver.mnewma12.algs.random.analyze.MonobitFreqTest;
+import edu.msudenver.mnewma12.algs.random.analyze.implementations.AbstractTest;
+import edu.msudenver.mnewma12.algs.random.analyze.implementations.IntFrequencyTest;
+import edu.msudenver.mnewma12.algs.random.analyze.implementations.MonobitFreqTest;
 import edu.msudenver.mnewma12.algs.random.analyze.StatCollector;
+import edu.msudenver.mnewma12.algs.random.analyze.implementations.MonoBitRunTest;
 import edu.msudenver.mnewma12.algs.random.generate.LibraryGenerator;
+import edu.msudenver.mnewma12.algs.random.generate.MyGenerator;
 import edu.msudenver.mnewma12.algs.random.generate.RandomGenerator;
 
 import java.io.BufferedWriter;
@@ -18,14 +21,19 @@ import java.util.stream.Collectors;
 
 public class Runner {
 
-    private static final int BYTE_COUNT = 100_000_000;
+    public static final int BYTE_COUNT = 1_000_000;
 
-    static List<ByteAnalyzer> analyzers = new ArrayList<ByteAnalyzer>(){{
+    public static final String LOG_ROOT = "/Users/michaelnewman/Library/Mobile Documents/com~apple~CloudDocs/_school/20SP/CS4050/algs/random/logs/";
+
+    static List<AbstractTest> analyzers = new ArrayList<AbstractTest>(){{
         add(new MonobitFreqTest());
+        add(new MonoBitRunTest());
+        add(new IntFrequencyTest());
     }};
 
     static List<RandomGenerator> generators = new ArrayList<RandomGenerator>(){{
-        add(new LibraryGenerator());
+//        add(new LibraryGenerator());
+        add(new MyGenerator());
     }};
 
     public static void main(String[] args) {
@@ -56,7 +64,7 @@ public class Runner {
     }
 
     private static void save(String summaryReport, String fileName) {
-        File file = new File("/Users/michaelnewman/Library/Mobile Documents/com~apple~CloudDocs/_school/20SP/CS4050/algs/random/logs/" + fileName + ".txt");
+        File file = new File(LOG_ROOT + fileName + ".txt");
 
         try(FileWriter base = new FileWriter(file);
             BufferedWriter writer = new BufferedWriter(base))
