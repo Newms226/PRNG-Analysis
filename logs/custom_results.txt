@@ -1,0 +1,13 @@
+GENERATOR: CUSTOM RANDOM GENERATOR
+
+Test: 2.1 Frequency (Monobit) Test
+1: 4,001,983 (50.0 %)
+p: 0.1605412082753933 (random)
+-------------------------------------------
+Test: 2.3 Runs Test
+p = 9.450836764740377E-29 (non-random)
+-------------------------------------------
+Test: Int Frequency Test
+mean: 127.179
+median: 126
+-------------------------------------------

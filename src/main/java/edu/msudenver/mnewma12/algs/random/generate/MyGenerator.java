@@ -7,14 +7,13 @@ import edu.msudenver.mnewma12.algs.cli.CLI;
  */
 public class MyGenerator implements RandomGenerator {
 
-    static byte getSeed() { return (byte) 101;}
+    static byte getSeed() { return (byte) 137363;}
 
-    private static int MOD_VAL = 256 * 256;
+    private static int MOD_VAL = 24750915;
 
-    /**
-     * Assumed to be *exclusive*
-     */
-    private static int MAX_VAL = 256;
+    private static int MAX_VAL = 254;
+
+    private static int MULTIPLIER = 934521397;
 
     private int currentSeed;
 
@@ -33,13 +32,16 @@ public class MyGenerator implements RandomGenerator {
     public byte nextByte() {
 //        CLI.echoLn("Current Seed: " + CLI.formatLong(currentSeed));
 
-        currentSeed = 7 * currentSeed % MOD_VAL;
+        currentSeed = MULTIPLIER * currentSeed % MOD_VAL;
 //        CLI.echoLn("New Seed: " + CLI.formatLong(currentSeed));
 
-        int intRan = (currentSeed - 1) % MAX_VAL;
+        int intRan = currentSeed % (MAX_VAL);
 //        CLI.echoLn("Generated random int: " + CLI.formatLong(intRan));
 
-        byte ran = (byte) intRan;
+        int normalizedRan = intRan - ((MAX_VAL) / 2);
+//        CLI.echoLn("Generated normalized random int: " + CLI.formatLong(normalizedRan));
+
+        byte ran = (byte) normalizedRan;
 //        CLI.echoLn("Converted to random byte: " + ran);
 
 //        CLI.echoLn(ran);
@@ -55,7 +57,7 @@ public class MyGenerator implements RandomGenerator {
 
     public static void main(String[] args) {
         MyGenerator gen = new MyGenerator();
-        byte[] rans = new byte[10];
+        byte[] rans = new byte[100];
         gen.nextBytes(rans);
     }
 

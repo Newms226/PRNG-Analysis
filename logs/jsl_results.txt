@@ -1,0 +1,16 @@
+GENERATOR: JSL IMPLEMENTATION
+
+Test: 2.1 Frequency (Monobit) Test
+1: 4,000,934 (50.0 %)
+p: 0.5087461447546424 (random)
+-------------------------------------------
+Test: 2.3 Runs Test
+p = 0.6254769484461167 (random)
+-------------------------------------------
+Test: Int Frequency Test
+mean: 127.479
+median: 127
+-------------------------------------------
+Test: Pair Generator
+See exported points
+-------------------------------------------

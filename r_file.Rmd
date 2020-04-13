@@ -1,0 +1,63 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+library(readr)
+test <- read_csv("logs/mygen_11.csv")
+plot(test,
+     main="Test 1",
+     xlim=c(-127, 127), ylim=c(-127, 127))
+```
+
+```{r}
+library(readr)
+test <- read_csv("logs/mygen_test2.csv")
+plot(test,
+     main="Test 2",
+     xlim=c(-127, 127), ylim=c(-127, 127))
+```
+
+```{r}
+library(readr)
+test <- read_csv("logs/mygen_test3.csv")
+plot(test,
+     main="Custom Generator",
+     xlim=c(-127, 127), ylim=c(-127, 127))
+```
+
+```{r}
+library(readr)
+test <- read_csv("logs/mygen_test4.csv")
+plot(test,
+     
+     xlim=c(-127, 127), ylim=c(-127, 127))
+```
+
+```{r}
+library(readr)
+test <- read_csv("logs/mygen_points_mult.csv")
+plot(test,
+     
+     xlim=c(-127, 127), ylim=c(-127, 127))
+```
+
+```{r}
+library(readr)
+test <- read_csv("logs/libgen_points.csv")
+plot(test,
+     main="JSL Generator",
+     xlim=c(-127, 127), ylim=c(-127, 127))
+```
+
+
+
+
+
+-------------
+
+```{r}
+lib_freq.raw = read_csv("logs/jsl_dist.csv")
+head(lib_freq.raw)
+barplot(lib_freq.raw)
+```

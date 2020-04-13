@@ -2,11 +2,8 @@ package edu.msudenver.mnewma12.algs.random.core;
 
 
 import edu.msudenver.mnewma12.algs.cli.CLI;
-import edu.msudenver.mnewma12.algs.random.analyze.implementations.AbstractTest;
-import edu.msudenver.mnewma12.algs.random.analyze.implementations.IntFrequencyTest;
-import edu.msudenver.mnewma12.algs.random.analyze.implementations.MonobitFreqTest;
+import edu.msudenver.mnewma12.algs.random.analyze.implementations.*;
 import edu.msudenver.mnewma12.algs.random.analyze.StatCollector;
-import edu.msudenver.mnewma12.algs.random.analyze.implementations.MonoBitRunTest;
 import edu.msudenver.mnewma12.algs.random.generate.LibraryGenerator;
 import edu.msudenver.mnewma12.algs.random.generate.MyGenerator;
 import edu.msudenver.mnewma12.algs.random.generate.RandomGenerator;
@@ -29,6 +26,7 @@ public class Runner {
         add(new MonobitFreqTest());
         add(new MonoBitRunTest());
         add(new IntFrequencyTest());
+//        add(new PairGenerator());
     }};
 
     static List<RandomGenerator> generators = new ArrayList<RandomGenerator>(){{
@@ -46,7 +44,7 @@ public class Runner {
 
         CLI.echoLn(summaryReport);
 
-        String fileName = "firstRun";
+        String fileName = "custom_results";
         save(summaryReport, fileName);
 
         CLI.echoLn("File saved @ " + fileName + "\nGoodbye :)");

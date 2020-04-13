@@ -2,6 +2,8 @@ package edu.msudenver.mnewma12.algs.random.analyze.implementations;
 
 import edu.msudenver.mnewma12.algs.cli.CLI;
 import edu.msudenver.mnewma12.algs.random.analyze.StatReport;
+import org.apache.commons.math3.special.Erf;
+
 
 import java.util.BitSet;
 import java.util.HashMap;
@@ -25,22 +27,36 @@ public class MonobitFreqTest extends AbstractTest {
 //        CLI.echoLn("2.1 Test running");
 
         BitSet bits = BitSet.valueOf(bytes);
+
+        int n = bits.length();
         int setCount = bits.cardinality();
-        int unsetCount = bytes.length - setCount;
+        int unsetCount = n - setCount;
         double percentSet = ((double) setCount) / bits.length();
+
+        double s_n = Math.abs(setCount - unsetCount);
+
+        double s_obs = s_n / Math.sqrt(n);
+
+        double p = Erf.erfc(s_obs / Math.sqrt(2));
+
+        boolean isRandom = p >= .01;
 
         Map<String, String> headers = new HashMap<String, String>() {{
            put("set", "" + setCount);
            put("unset", "" + unsetCount);
            put("percentSet", "" + percentSet);
-           put("n", "" + bits.length());
+           put("n", "" + n);
+           put("p", "" + p);
+           put("isRandom", "" + isRandom);
         }};
 
+
         report = "1: " + formatter.format(setCount)
-                + " (" + CLI.formatPercent(percentSet) + ")";
+                + " (" + CLI.formatPercent(percentSet) + ")"
+                + "\np: " + p + " (" + (isRandom ? "random" : "non-random") + ")";
 
 //        CLI.echoLn(report);
 
-        return new StatReport(name, description, report, headers);
+        return build(headers);
     }
 }

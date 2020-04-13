@@ -1,6 +1,8 @@
 package edu.msudenver.mnewma12.algs.random.analyze.implementations;
 
+import edu.msudenver.mnewma12.algs.cli.CLI;
 import edu.msudenver.mnewma12.algs.random.analyze.StatReport;
+import org.apache.commons.math3.special.Erf;
 
 import java.util.*;
 
@@ -37,19 +39,23 @@ public class MonoBitRunTest extends AbstractTest {
 
         double denom = 2 * Math.sqrt(2 * n) * oneProportion * (1 - oneProportion);
 
-        double p = num / denom;
+        double p = Erf.erfc(num / denom);
 
         boolean isRandom = p >= 0.01;
 
+        int finalV_obs = v_obs;
         Map<String, String> headers = new HashMap<String, String>() {{
            put("n", "" + n);
            put("set", "" + oneProportion);
            put("p", "" + p);
            put("isRandom", "" + isRandom);
+           put("v_obs", "" + finalV_obs);
         }};
 
-        report = "p = " + formatter.format(p)
+        report = "p = " + p
                 + " (" + (isRandom ? "random" : "non-random") + ")";
+
+        CLI.echoLn(headers.toString());
 
         // TODO this is common in all implementations, abstract
         return new StatReport(name, description, report, headers);
